@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candy-Bot - Changelog</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        .container { max-width: 700px; margin: 0 auto; }
+        h1 {
+            font-size: 2rem;
+            background: linear-gradient(135deg, #ff6b9d, #c44dff, #6b5ce7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        .subtitle { color: #888; margin-bottom: 40px; font-size: 0.9rem; }
+        .version {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(10px);
+        }
+        .version h2 {
+            color: #c44dff;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        .version .date { color: #888; font-size: 0.8rem; margin-bottom: 15px; }
+        .version h3 { color: #ff6b9d; font-size: 0.95rem; margin: 12px 0 8px; }
+        .version ul { list-style: none; padding: 0; }
+        .version li {
+            padding: 4px 0 4px 20px;
+            position: relative;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        .version li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #6b5ce7;
+        }
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #c44dff;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🍬 Candy-Bot Changelog</h1>
+        <p class="subtitle">All notable changes to Candy-Bot will be documented here.</p>
+
+        <div class="version">
+            <h2>Version 1.0.0</h2>
+            <div class="date">Released: March 20, 2026</div>
+            
+            <h3>✨ Features</h3>
+            <ul>
+                <li>Desktop Widget with AI-powered chat</li>
+                <li>Venice AI integration for intelligent responses</li>
+                <li>ElevenLabs voice synthesis</li>
+                <li>Multi-drive file search &amp; organization</li>
+                <li>Role play mode with custom personalities</li>
+                <li>Code assistant for developers</li>
+                <li>Settings panel with API key management</li>
+                <li>Browser integration window</li>
+            </ul>
+            
+            <h3>📝 Notes</h3>
+            <ul>
+                <li>First public release of Candy-Bot</li>
+                <li>Requires Windows 10/11 with .NET 9.0</li>
+            </ul>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Download Page</a>
+    </div>
+</body>
+</html>
