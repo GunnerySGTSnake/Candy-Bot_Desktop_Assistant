@@ -1,16 +1,32 @@
 # Candy-Bot Update Changelog
 
-## Version 1.0.0 - Initial Release
-**Released:** 2026-03-20
+## Version 5.0.0 - Major Release
+**Released:** 2026-04-23
+
+### New Features
+- **Multi-Character Roleplay** — Add up to 6 AI characters per session with full per-character profiles
+- **Character Library** — Persistent library of up to 12 saved characters; pick and reuse across any session
+- **Detailed Character Cards** — Height, Body Type, Hair Color, Eye Color, Personality Archetype, Relationship, and Special Traits per character
+- **Save to Library** — Save any active character card to the persistent library with one click
+- **Create / Edit in Library** — Build new characters directly in the library without starting a session
+- **Full Help & Walkthrough Tab** — Complete step-by-step guide inside Settings covering every app feature
+- **Detail Field Persistence** — All character profile details now fully saved and restored in .candyrp files
+- **Resizable Windows** — All major windows now support free resizing
+
+### Improvements
+- Session save/load now preserves all detailed profile fields
+- Multi-character AI prompt engineering with per-character dialogue prefixing
+- Tag list expanded and alphabetically sorted (Safe + Mature tiers)
+- Intensity scale updated with sharper level descriptions up to level 10
+
+## Version 4.4.1
+**Released:** 2026-04-22
 
 ### Features
 - Desktop Widget with AI-powered chat
 - Venice AI integration
 - ElevenLabs voice synthesis
 - Multi-drive file search
-- Role play mode
-- Code assistant
-- Settings panel with API key management
-
-### Notes
-- First public release
+- Role play mode with save/load
+- DJ Engine
+- Settings panel with API key management, themes, and PIN protection
