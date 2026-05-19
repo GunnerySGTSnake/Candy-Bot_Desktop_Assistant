@@ -3,123 +3,283 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candy-Bot - Changelog</title>
+    <title>Candy-Bot — Changelog</title>
+    <meta name="description" content="Candy-Bot version history and release notes.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #c44dff;
+            --primary-light: #d77bff;
+            --accent: #ff6b9d;
+            --accent-2: #6b5ce7;
+            --bg-dark: #06060f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #e8e8f0;
+            --text-muted: #7a7a9a;
+            --glow-primary: rgba(196,77,255,0.35);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a0a2e 50%, #0a1a2e 100%);
-            color: #e0e0e0;
-            min-height: 100vh;
-            padding: 40px 20px;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
-        .container { max-width: 700px; margin: 0 auto; }
-        h1 {
-            font-size: 2rem;
-            background: linear-gradient(135deg, #ff6b9d, #c44dff, #6b5ce7);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
+        .bg-canvas { position: fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
+        .bg-orb { position:absolute; border-radius:50%; filter:blur(100px); animation:orbit 20s ease-in-out infinite; }
+        .bg-orb-1 { width:600px;height:600px; background:radial-gradient(circle,rgba(196,77,255,0.1),transparent 70%); top:-200px;left:-100px; }
+        .bg-orb-2 { width:500px;height:500px; background:radial-gradient(circle,rgba(255,107,157,0.08),transparent 70%); top:40%;right:-150px; animation-delay:-7s; }
+        @keyframes orbit { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-20px,40px) scale(0.95)} }
+
+        nav {
+            position: fixed; top:0; left:0; right:0; z-index:100;
+            padding: 16px 0;
+            backdrop-filter: blur(20px);
+            background: rgba(6,6,15,0.8);
+            border-bottom: 1px solid var(--border);
         }
-        .subtitle { color: #888; margin-bottom: 40px; font-size: 0.9rem; }
-        .version {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 20px;
-            backdrop-filter: blur(10px);
+        .nav-inner {
+            display: flex; align-items: center; justify-content: space-between;
+            max-width: 860px; margin: 0 auto; padding: 0 24px;
         }
-        .version h2 {
-            color: #c44dff;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
+        .nav-brand {
+            display: flex; align-items: center; gap: 10px;
+            font-weight: 800; font-size: 1.1rem;
+            text-decoration: none; color: var(--text);
         }
-        .version .date { color: #888; font-size: 0.8rem; margin-bottom: 15px; }
-        .version h3 { color: #ff6b9d; font-size: 0.95rem; margin: 12px 0 8px; }
-        .version ul { list-style: none; padding: 0; }
-        .version li {
-            padding: 4px 0 4px 20px;
-            position: relative;
-            font-size: 0.9rem;
-            color: #ccc;
+        .nav-brand img { width:32px; height:32px; border-radius:50%; object-fit:cover; }
+        .nav-brand span {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
-        .version li::before {
-            content: '✦';
-            position: absolute;
-            left: 0;
-            color: #6b5ce7;
+        .nav-back {
+            color: var(--text-muted); text-decoration: none;
+            font-size: 0.88rem; font-weight: 500;
+            transition: color 0.2s;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 30px;
-            color: #c44dff;
-            text-decoration: none;
-            font-size: 0.9rem;
+        .nav-back:hover { color: var(--text); }
+
+        .page { position: relative; z-index:1; max-width: 860px; margin: 0 auto; padding: 120px 24px 80px; }
+
+        .page-title {
+            font-size: 2.8rem; font-weight: 900; letter-spacing: -1.5px;
+            margin-bottom: 8px;
         }
-        .back-link:hover { text-decoration: underline; }
+        .page-title .gradient {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .page-sub { color: var(--text-muted); font-size: 1rem; margin-bottom: 56px; }
+
+        .version-block { margin-bottom: 40px; }
+        .version-header {
+            display: flex; align-items: center; gap: 14px;
+            margin-bottom: 20px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+        .version-tag {
+            background: linear-gradient(135deg, var(--primary), var(--accent-2));
+            color: white; font-weight: 700; font-size: 0.85rem;
+            padding: 4px 14px; border-radius: 100px;
+        }
+        .version-tag.major {
+            background: linear-gradient(135deg, var(--accent), var(--primary));
+        }
+        .version-tag.patch {
+            background: rgba(196,77,255,0.15);
+            color: var(--primary-light);
+            border: 1px solid rgba(196,77,255,0.3);
+        }
+        .version-date { color: var(--text-muted); font-size: 0.82rem; }
+
+        .section-heading {
+            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2.5px; color: var(--primary-light);
+            margin-bottom: 12px; margin-top: 20px;
+        }
+        .change-list { list-style: none; }
+        .change-list li {
+            display: flex; align-items: flex-start; gap: 10px;
+            padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
+            font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;
+        }
+        .change-list li:last-child { border-bottom: none; }
+        .change-list li::before {
+            content: '—';
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .change-list li strong { color: var(--text); font-weight: 600; }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--border), transparent);
+            margin: 40px 0;
+        }
+
+        footer { text-align:center; padding: 40px 0; border-top: 1px solid var(--border); }
+        footer p { font-size:0.82rem; color:var(--text-muted); }
+        footer a { color:var(--primary-light); text-decoration:none; }
+        footer a:hover { text-decoration:underline; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🍬 Candy-Bot Changelog</h1>
-        <p class="subtitle">All notable changes to Candy-Bot will be documented here.</p>
+<div class="bg-canvas">
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+</div>
 
-        <div class="version">
-            <h2>Version 4.4.0</h2>
-            <div class="date">Released: March 20, 2026</div>
-            
-            <h3>🎧 AI DJ Engine</h3>
-            <ul>
-                <li>Full music analysis engine powered by Mega Byte IT Servers (BPM, Key, Energy, Structure)</li>
-                <li>Camelot Wheel harmonic mixing with compatibility scoring</li>
-                <li>Auto-sequencing with 4 energy profiles: Slow Build, Peak Hour, Chill Lounge, Rollercoaster</li>
-                <li>Automated beat-matched crossfade and drop swap transitions</li>
-                <li>Export continuous MP3/WAV mixes or M3U playlists (Rekordbox compatible)</li>
-                <li>Mega Byte IT audio intelligence integration for advanced mood/energy analysis</li>
-            </ul>
-
-            <h3>🖼️ Uncensored AI Models</h3>
-            <ul>
-                <li>Mega Byte IT image generation with multiple models (full creative freedom)</li>
-                <li>Text model selector for multiple Mega Byte IT language engines</li>
-                <li>Fixed safe_mode for unrestricted image generation</li>
-            </ul>
-
-            <h3>✨ Improvements</h3>
-            <ul>
-                <li>Live theme application — no restart required</li>
-                <li>Mega Byte IT API key, webhook secret, and webhook URL in Settings</li>
-                <li>Tab styling consistency across all panels</li>
-                <li>Improved text readability in all UI components</li>
-                <li>Professional Inno Setup installer with all dependencies</li>
-            </ul>
-        </div>
-
-        <div class="version">
-            <h2>Version 4.4.0
-            <div class="date">Released: March 18, 2026</div>
-            
-            <h3>✨ Features</h3>
-            <ul>
-                <li>Desktop Widget with AI-powered chat</li>
-                <li>Mega Byte IT integration for intelligent responses</li>
-                <li>Mega Byte IT voice synthesis</li>
-                <li>Multi-drive file search &amp; organization</li>
-                <li>Role play mode with custom personalities</li>
-                <li>Code assistant for developers</li>
-                <li>Settings panel with API key management</li>
-                <li>Browser integration window</li>
-            </ul>
-            
-            <h3>📝 Notes</h3>
-            <ul>
-                <li>First public release of Candy-Bot</li>
-                <li>Requires Windows 10/11 with .NET 9.0</li>
-            </ul>
-        </div>
-
-        <a href="index.html" class="back-link">← Back to Download Page</a>
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <img src="images/candy-bot-avatar.png" alt="Candy-Bot">
+            <span>Candy-Bot</span>
+        </a>
+        <a href="index.html" class="nav-back">← Back to Home</a>
     </div>
+</nav>
+
+<div class="page">
+    <h1 class="page-title">Release <span class="gradient">Changelog</span></h1>
+    <p class="page-sub">Every update, every improvement — the full story.</p>
+
+    <!-- v6.0.5 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag patch">v6.0.5</span>
+            <span class="version-date">2026-05-19</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Improved error reporting when image generation fails — now shows the actual server message instead of a generic error</li>
+            <li>Fixed update checker not detecting new versions on fresh installs</li>
+            <li>Website updated to v6.0.5 with latest feature list</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v6.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag major">v6.0.0 — Major Release</span>
+            <span class="version-date">2026-05-19</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Drastically upgraded the Image Generator — All image generation now runs on 4× A10G GPU, 96GB VRAM for dramatically faster, higher-quality results</li>
+            <li>Auto-Pause / Image Server automatically wakes before generation and pauses immediately after — zero idle GPU</li>
+            <li>8 Curated &amp; Spicy NSFW Models</li>
+            <li>Slow-Burn Explicit AI Pacing now with AI responses between 700-1200 words, multi-turn breakdowns enforced; scenes never end in a single turn</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v5.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag major">v5.0.0 — Major Release</span>
+            <span class="version-date">2026-04-23</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Roleplay saves now persist to a local <strong>RoleplaySaves/</strong> folder inside the application directory</li>
+            <li>Image generator model dropdown now shows clean display names with the Space handling all routing</li>
+            <li>Error messages updated throughout to reflect cloud-based generation</li>
+            <li><strong>Finish Roleplay Button</strong> — Start Roleplay button transforms to Finish Roleplay (dark red) after session begins</li>
+            <li><strong>Saved Chats Library Tab</strong> — Save, name, load, and delete roleplay sessions from a dedicated Saved Chats tab in the Library</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v4.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag major">v4.0.0 — Major Release</span>
+            <span class="version-date">2026-04-01</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Full music analysis engine powered by Mega Byte IT Servers (BPM, Key, Energy, Structure)</li>
+            <li>Camelot Wheel harmonic mixing with compatibility scoring</li>
+            <li>Auto-sequencing with 4 energy profiles: Slow Build, Peak Hour, Chill Lounge, Rollercoaster</li>
+            <li>Automated beat-matched crossfade and drop swap transitions</li>
+            <li>Export continuous MP3/WAV mixes or M3U playlists (Rekordbox compatible)</li>
+            <li>Mega Byte IT audio intelligence integration for advanced mood/energy analysis</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v3.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag">v3.0.0</span>
+            <span class="version-date">2026-03-01</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Image generation with multiple models</li>
+            <li>Text model selector for multiple Mega Byte IT language engines</li>
+            <li>Fixed unrestricted image generation</li>
+            <li>Live theme application — no restart required</li>
+            <li>Mega Byte IT Servers API key, webhook secret, and webhook URL in Settings</li>
+            <li>Tab styling consistency across all panels</li>
+            <li>Improved text readability in all UI components</li>
+            <li>Professional Setup Installer with all dependencies</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v2.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag">v2.0.0</span>
+            <span class="version-date">2026-02-01</span>
+        </div>
+        <div class="section-heading">Improvements</div>
+        <ul class="change-list">
+            <li>Desktop Widget with AI-powered chat</li>
+            <li>Mega Byte IT Server Integration for intelligent responses</li>
+            <li>Multi-drive file search &amp; organization</li>
+            <li>Role play mode with custom personalities</li>
+            <li>Code assistant for developers</li>
+            <li>Settings panel with API key management</li>
+            <li>Browser integration window</li>
+        </ul>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- v1.0.0 -->
+    <div class="version-block">
+        <div class="version-header">
+            <span class="version-tag">v1.0.0</span>
+            <span class="version-date">2026-01-01</span>
+        </div>
+        <ul class="change-list">
+            <li>First public release of Candy-Bot</li>
+            <li>Requires Windows 10/11 with .NET 9.0</li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <div>
+        <p style="margin-bottom:8px;"><a href="index.html">← Back to Home</a></p>
+        <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>
+    </div>
+</footer>
+
 </body>
 </html>
