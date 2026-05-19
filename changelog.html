@@ -19,7 +19,6 @@
             --border: rgba(255,255,255,0.08);
             --text: #e8e8f0;
             --text-muted: #7a7a9a;
-            --glow-primary: rgba(196,77,255,0.35);
         }
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
@@ -30,101 +29,84 @@
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
-        .bg-canvas { position: fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
+        .bg-canvas { position:fixed; top:0; left:0; right:0; bottom:0; z-index:0; pointer-events:none; }
         .bg-orb { position:absolute; border-radius:50%; filter:blur(100px); animation:orbit 20s ease-in-out infinite; }
         .bg-orb-1 { width:600px;height:600px; background:radial-gradient(circle,rgba(196,77,255,0.1),transparent 70%); top:-200px;left:-100px; }
         .bg-orb-2 { width:500px;height:500px; background:radial-gradient(circle,rgba(255,107,157,0.08),transparent 70%); top:40%;right:-150px; animation-delay:-7s; }
         @keyframes orbit { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(-20px,40px) scale(0.95)} }
 
         nav {
-            position: fixed; top:0; left:0; right:0; z-index:100;
-            padding: 16px 0;
-            backdrop-filter: blur(20px);
-            background: rgba(6,6,15,0.8);
-            border-bottom: 1px solid var(--border);
+            position:fixed; top:0; left:0; right:0; z-index:100;
+            padding:16px 0;
+            backdrop-filter:blur(20px);
+            background:rgba(6,6,15,0.8);
+            border-bottom:1px solid var(--border);
         }
         .nav-inner {
-            display: flex; align-items: center; justify-content: space-between;
-            max-width: 860px; margin: 0 auto; padding: 0 24px;
+            display:flex; align-items:center; justify-content:space-between;
+            max-width:860px; margin:0 auto; padding:0 24px;
         }
         .nav-brand {
-            display: flex; align-items: center; gap: 10px;
-            font-weight: 800; font-size: 1.1rem;
-            text-decoration: none; color: var(--text);
+            display:flex; align-items:center; gap:10px;
+            font-weight:800; font-size:1.1rem;
+            text-decoration:none; color:var(--text);
         }
         .nav-brand img { width:32px; height:32px; border-radius:50%; object-fit:cover; }
         .nav-brand span {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background:linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
-        .nav-back {
-            color: var(--text-muted); text-decoration: none;
-            font-size: 0.88rem; font-weight: 500;
-            transition: color 0.2s;
-        }
-        .nav-back:hover { color: var(--text); }
+        .nav-back { color:var(--text-muted); text-decoration:none; font-size:0.88rem; font-weight:500; transition:color 0.2s; }
+        .nav-back:hover { color:var(--text); }
 
-        .page { position: relative; z-index:1; max-width: 860px; margin: 0 auto; padding: 120px 24px 80px; }
+        .page { position:relative; z-index:1; max-width:860px; margin:0 auto; padding:120px 24px 80px; }
 
-        .page-title {
-            font-size: 2.8rem; font-weight: 900; letter-spacing: -1.5px;
-            margin-bottom: 8px;
-        }
+        .page-title { font-size:2.8rem; font-weight:900; letter-spacing:-1.5px; margin-bottom:8px; }
         .page-title .gradient {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background:linear-gradient(135deg, var(--accent), var(--primary));
+            -webkit-background-clip:text; -webkit-text-fill-color:transparent;
         }
-        .page-sub { color: var(--text-muted); font-size: 1rem; margin-bottom: 56px; }
+        .page-sub { color:var(--text-muted); font-size:1rem; margin-bottom:56px; }
 
-        .version-block { margin-bottom: 40px; }
+        .version-block { margin-bottom:44px; }
+
         .version-header {
-            display: flex; align-items: center; gap: 14px;
-            margin-bottom: 20px; padding-bottom: 16px;
-            border-bottom: 1px solid var(--border);
+            display:flex; align-items:center; gap:14px;
+            margin-bottom:18px; padding-bottom:14px;
+            border-bottom:1px solid var(--border);
         }
         .version-tag {
-            background: linear-gradient(135deg, var(--primary), var(--accent-2));
-            color: white; font-weight: 700; font-size: 0.85rem;
-            padding: 4px 14px; border-radius: 100px;
+            background:rgba(196,77,255,0.15);
+            color:var(--primary-light);
+            border:1px solid rgba(196,77,255,0.3);
+            font-weight:700; font-size:0.85rem;
+            padding:4px 14px; border-radius:100px;
         }
-        .version-tag.major {
-            background: linear-gradient(135deg, var(--accent), var(--primary));
-        }
-        .version-tag.patch {
-            background: rgba(196,77,255,0.15);
-            color: var(--primary-light);
-            border: 1px solid rgba(196,77,255,0.3);
-        }
-        .version-date { color: var(--text-muted); font-size: 0.82rem; }
 
         .section-heading {
-            font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 2.5px; color: var(--primary-light);
-            margin-bottom: 12px; margin-top: 20px;
+            font-size:0.72rem; font-weight:700; text-transform:uppercase;
+            letter-spacing:2.5px; color:var(--primary-light);
+            margin-bottom:12px; margin-top:16px;
         }
-        .change-list { list-style: none; }
+
+        .change-list { list-style:none; }
         .change-list li {
-            display: flex; align-items: flex-start; gap: 10px;
-            padding: 9px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-            font-size: 0.92rem; color: var(--text-muted); line-height: 1.55;
+            display:flex; align-items:flex-start; gap:10px;
+            padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.04);
+            font-size:0.92rem; color:var(--text-muted); line-height:1.6;
         }
-        .change-list li:last-child { border-bottom: none; }
+        .change-list li:last-child { border-bottom:none; }
         .change-list li::before {
-            content: '—';
-            color: var(--primary);
-            font-weight: 700;
-            flex-shrink: 0;
-            margin-top: 1px;
-        }
-        .change-list li strong { color: var(--text); font-weight: 600; }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            margin: 40px 0;
+            content:'—';
+            color:var(--primary);
+            font-weight:700;
+            flex-shrink:0;
+            margin-top:1px;
         }
 
-        footer { text-align:center; padding: 40px 0; border-top: 1px solid var(--border); }
+        .divider { height:1px; background:linear-gradient(90deg,transparent,var(--border),transparent); margin:40px 0; }
+
+        footer { text-align:center; padding:40px 0; border-top:1px solid var(--border); }
         footer p { font-size:0.82rem; color:var(--text-muted); }
         footer a { color:var(--primary-light); text-decoration:none; }
         footer a:hover { text-decoration:underline; }
@@ -153,8 +135,7 @@
     <!-- v6.0.5 -->
     <div class="version-block">
         <div class="version-header">
-            <span class="version-tag patch">v6.0.5</span>
-            <span class="version-date">2026-05-19</span>
+            <span class="version-tag">v6.0.5</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
@@ -169,8 +150,7 @@
     <!-- v6.0.0 -->
     <div class="version-block">
         <div class="version-header">
-            <span class="version-tag major">v6.0.0 — Major Release</span>
-            <span class="version-date">2026-05-19</span>
+            <span class="version-tag">v6.0.0</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
@@ -186,16 +166,15 @@
     <!-- v5.0.0 -->
     <div class="version-block">
         <div class="version-header">
-            <span class="version-tag major">v5.0.0 — Major Release</span>
-            <span class="version-date">2026-04-23</span>
+            <span class="version-tag">v5.0.0</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
-            <li>Roleplay saves now persist to a local <strong>RoleplaySaves/</strong> folder inside the application directory</li>
+            <li>Roleplay saves now persist to a local RoleplaySaves/ folder inside the application directory</li>
             <li>Image generator model dropdown now shows clean display names with the Space handling all routing</li>
             <li>Error messages updated throughout to reflect cloud-based generation</li>
-            <li><strong>Finish Roleplay Button</strong> — Start Roleplay button transforms to Finish Roleplay (dark red) after session begins</li>
-            <li><strong>Saved Chats Library Tab</strong> — Save, name, load, and delete roleplay sessions from a dedicated Saved Chats tab in the Library</li>
+            <li>Finish Roleplay Button — Start Roleplay button transforms to Finish Roleplay (dark red) after session begins</li>
+            <li>Saved Chats Library Tab — Save, name, load, and delete roleplay sessions from a dedicated Saved Chats tab in the Library</li>
         </ul>
     </div>
 
@@ -204,8 +183,7 @@
     <!-- v4.0.0 -->
     <div class="version-block">
         <div class="version-header">
-            <span class="version-tag major">v4.0.0 — Major Release</span>
-            <span class="version-date">2026-04-01</span>
+            <span class="version-tag">v4.0.0</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
@@ -224,7 +202,6 @@
     <div class="version-block">
         <div class="version-header">
             <span class="version-tag">v3.0.0</span>
-            <span class="version-date">2026-03-01</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
@@ -245,7 +222,6 @@
     <div class="version-block">
         <div class="version-header">
             <span class="version-tag">v2.0.0</span>
-            <span class="version-date">2026-02-01</span>
         </div>
         <div class="section-heading">Improvements</div>
         <ul class="change-list">
@@ -265,7 +241,6 @@
     <div class="version-block">
         <div class="version-header">
             <span class="version-tag">v1.0.0</span>
-            <span class="version-date">2026-01-01</span>
         </div>
         <ul class="change-list">
             <li>First public release of Candy-Bot</li>
