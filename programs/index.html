@@ -3,165 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Programs — The Fallen Collective</title>
-    <meta name="description" content="Download apps and programs from The Fallen Collective.">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Programs Hub — The Fallen Collective</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <style>
-        :root { --primary:#c44dff;--primary-light:#d77bff;--accent:#ff6b9d;--accent-2:#6b5ce7;--bg-dark:#06060f;--bg-card:rgba(255,255,255,0.03);--border:rgba(255,255,255,0.08);--text:#e8e8f0;--text-muted:#7a7a9a;--glow-primary:rgba(196,77,255,0.35); }
-        * { margin:0;padding:0;box-sizing:border-box; }
-        body { font-family:'Inter',sans-serif;background:var(--bg-dark);color:var(--text);overflow-x:hidden;-webkit-font-smoothing:antialiased; }
-        .bg-canvas { position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;pointer-events:none; }
-        .bg-orb { position:absolute;border-radius:50%;filter:blur(100px);animation:orbit 20s ease-in-out infinite; }
-        .bg-orb-1 { width:600px;height:600px;background:radial-gradient(circle,rgba(196,77,255,0.12),transparent 70%);top:-200px;left:-100px; }
-        .bg-orb-2 { width:500px;height:500px;background:radial-gradient(circle,rgba(255,107,157,0.1),transparent 70%);top:40%;right:-150px;animation-delay:-7s; }
-        .bg-orb-3 { width:700px;height:700px;background:radial-gradient(circle,rgba(107,92,231,0.08),transparent 70%);bottom:-200px;left:30%;animation-delay:-14s; }
-        @keyframes orbit { 0%,100%{transform:translate(0,0) scale(1);}25%{transform:translate(40px,-30px) scale(1.05);}50%{transform:translate(-20px,40px) scale(0.95);}75%{transform:translate(30px,20px) scale(1.02);} }
-        .grid-overlay { position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);background-size:60px 60px; }
-        .particles { position:fixed;top:0;left:0;right:0;bottom:0;z-index:0;pointer-events:none; }
-        .particle { position:absolute;border-radius:50%;animation:drift linear infinite;opacity:0; }
-        @keyframes drift { 0%{transform:translateY(100vh) rotate(0deg);opacity:0;}5%{opacity:0.4;}95%{opacity:0.4;}100%{transform:translateY(-5vh) rotate(360deg);opacity:0;} }
-        .page { position:relative;z-index:1; }
-        .container { max-width:1100px;margin:0 auto;padding:0 24px; }
-        nav { position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;backdrop-filter:blur(20px) saturate(1.5);background:rgba(6,6,15,0.7);border-bottom:1px solid var(--border);transition:all 0.3s; }
-        .nav-inner { display:flex;align-items:center;justify-content:space-between;max-width:1100px;margin:0 auto;padding:0 24px; }
-        .nav-brand { display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.15rem;text-decoration:none;color:var(--text); }
-        .nav-brand span { background:linear-gradient(135deg,var(--accent),var(--primary));-webkit-background-clip:text;-webkit-text-fill-color:transparent; }
-        .nav-links { display:flex;gap:32px;align-items:center; }
-        .nav-links a { color:var(--text-muted);text-decoration:none;font-size:0.88rem;font-weight:500;transition:color 0.2s; }
-        .nav-links a:hover { color:var(--text); }
-        .nav-cta { background:linear-gradient(135deg,var(--primary),var(--accent-2));color:white !important;padding:8px 20px;border-radius:8px;font-weight:600 !important; }
-        .page-header { padding:140px 0 60px;text-align:center; }
-        .page-badge { display:inline-flex;align-items:center;gap:8px;background:rgba(196,77,255,0.1);border:1px solid rgba(196,77,255,0.25);padding:6px 16px;border-radius:100px;font-size:0.78rem;font-weight:600;color:var(--primary-light);margin-bottom:24px; }
-        .page-badge .dot { width:6px;height:6px;background:#4ade80;border-radius:50%;animation:pulse 2s ease-in-out infinite; }
-        @keyframes pulse { 0%,100%{opacity:1;}50%{opacity:0.3;} }
-        .page-header h1 { font-size:3.2rem;font-weight:900;letter-spacing:-2px;margin-bottom:16px; }
-        .page-header h1 .gradient { background:linear-gradient(135deg,var(--accent),var(--primary),var(--accent-2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:gradient-shift 4s ease-in-out infinite; }
-        @keyframes gradient-shift { 0%,100%{background-position:0% center;}50%{background-position:100% center;} }
-        .page-header p { font-size:1.1rem;color:var(--text-muted);max-width:560px;margin:0 auto;line-height:1.7; }
-        .programs-section { padding:20px 0 120px; }
-        .programs-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px; }
-        .program-card { background:var(--bg-card);border:1px solid var(--border);border-radius:24px;padding:36px 32px;transition:all 0.4s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;display:flex;flex-direction:column;gap:20px; }
-        .program-card::before { content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--accent),var(--accent-2));opacity:0;transition:opacity 0.4s; }
-        .program-card:hover { border-color:rgba(196,77,255,0.25);background:rgba(255,255,255,0.05);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.3); }
-        .program-card:hover::before { opacity:1; }
-        .program-icon { width:64px;height:64px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:rgba(196,77,255,0.1);border:1px solid rgba(196,77,255,0.15);flex-shrink:0;overflow:hidden; }
-        .program-icon img { width:100%;height:100%;object-fit:cover; }
-        .program-meta { display:flex;align-items:flex-start;gap:16px; }
-        .program-info { flex:1; }
-        .program-info h3 { font-size:1.2rem;font-weight:800;color:#fff;margin-bottom:6px; }
-        .platform-badge { display:inline-flex;align-items:center;gap:5px;background:rgba(107,92,231,0.15);border:1px solid rgba(107,92,231,0.3);padding:3px 10px;border-radius:100px;font-size:0.72rem;font-weight:600;color:#a89cf8;margin-bottom:10px; }
-        .program-info p { font-size:0.9rem;color:var(--text-muted);line-height:1.6; }
-        .program-stats { display:flex;gap:24px; }
-        .program-stat-val { font-size:0.95rem;font-weight:700;color:var(--primary-light); }
-        .program-stat-label { font-size:0.72rem;color:var(--text-muted);margin-top:2px; }
-        .btn-download { display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--primary),var(--accent-2));color:white;text-decoration:none;padding:14px 28px;border-radius:12px;font-size:0.95rem;font-weight:700;transition:all 0.3s ease;box-shadow:0 4px 25px var(--glow-primary);width:100%;justify-content:center; }
-        .btn-download:hover { transform:translateY(-2px);box-shadow:0 8px 40px var(--glow-primary); }
-        .program-card.empty { border-style:dashed;border-color:rgba(255,255,255,0.06);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:280px; }
-        .program-card.empty:hover { transform:none;box-shadow:none; }
-        .program-card.empty::before { display:none; }
-        .empty-icon { font-size:2.5rem;margin-bottom:12px;opacity:0.3; }
-        .program-card.empty p { font-size:0.85rem;color:rgba(255,255,255,0.2);font-style:italic; }
-        footer { padding:40px 0;border-top:1px solid var(--border);text-align:center; }
-        footer p { font-size:0.82rem;color:var(--text-muted); }
-        footer a { color:var(--primary-light);text-decoration:none; }
-        @media(max-width:700px) { .page-header h1{font-size:2.2rem;} .programs-grid{grid-template-columns:1fr;} .nav-links{display:none;} }
+
+        :root {
+            --primary: #c44dff;
+            --primary-light: #d77bff;
+            --accent: #ff6b9d;
+            --accent-2: #6b5ce7;
+            --bg-dark: #06060f;
+            --bg-card: rgba(255,255,255,0.03);
+            --border: rgba(255,255,255,0.08);
+            --text: #e8e8f0;
+            --text-muted: #7a7a9a;
+            --glow-primary: rgba(196, 77, 255, 0.35);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, -apple-system, sans-serif; background: var(--bg-dark); color: var(--text); overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        .bg-canvas { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; }
+        .bg-orb { position: absolute; border-radius: 50%; filter: blur(100px); animation: orbit 20s ease-in-out infinite; }
+        .bg-orb-1 { width: 600px; height: 600px; background: radial-gradient(circle, rgba(196,77,255,0.12), transparent 70%); top: -200px; left: -100px; }
+        .bg-orb-2 { width: 500px; height: 500px; background: radial-gradient(circle, rgba(255,107,157,0.1), transparent 70%); top: 40%; right: -150px; }
+        .grid-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px); background-size: 60px 60px; }
+        .page { position: relative; z-index: 1; min-height: 100vh; display: flex; flex-direction: column; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; width: 100%; }
+        
+        nav { padding: 16px 0; backdrop-filter: blur(20px); background: rgba(6,6,15,0.7); border-bottom: 1px solid var(--border); }
+        .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.15rem; text-decoration: none; color: var(--text); }
+        .nav-brand span { background: linear-gradient(135deg, var(--accent), var(--primary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--text); }
+        
+        .hero { padding: 100px 0 60px; text-align: center; }
+        .hero h1 { font-size: 3rem; font-weight: 900; margin-bottom: 20px; }
+        .hero h1 .gradient { background: linear-gradient(135deg, var(--accent), var(--primary), var(--accent-2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto 40px; line-height: 1.7; }
+        
+        .btn-primary { display: inline-flex; align-items: center; gap: 10px; background: linear-gradient(135deg, var(--primary), var(--accent-2)); color: white !important; text-decoration: none; padding: 16px 36px; border-radius: 12px; font-size: 1rem; font-weight: 700; transition: all 0.3s; box-shadow: 0 4px 25px var(--glow-primary); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 40px var(--glow-primary); }
+        .btn-secondary { display: inline-flex; align-items: center; gap: 8px; color: var(--text-muted); text-decoration: none; padding: 16px 28px; border-radius: 12px; font-weight: 600; border: 1px solid var(--border); background: var(--bg-card); transition: all 0.3s; }
+        .btn-secondary:hover { border-color: rgba(255,255,255,0.15); color: var(--text); transform: translateY(-2px); }
+        
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; margin-top: 40px; padding-bottom: 80px; }
+        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; padding: 32px; transition: all 0.4s; text-align: left; text-decoration: none; color: inherit; display: block; position: relative; overflow: hidden; }
+        .card:hover { border-color: rgba(196,77,255,0.25); background: rgba(255,255,255,0.05); transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+        .card img { width: 64px; height: 64px; border-radius: 16px; margin-bottom: 20px; object-fit: contain; background: rgba(0,0,0,0.2); padding: 4px; }
+        .card h3 { font-size: 1.4rem; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
+        .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
+        
+        footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
+        footer p { font-size: 0.82rem; color: var(--text-muted); }
+        footer a { color: var(--primary-light); text-decoration: none; }
+
     </style>
 </head>
 <body>
     <div class="bg-canvas">
         <div class="bg-orb bg-orb-1"></div>
         <div class="bg-orb bg-orb-2"></div>
-        <div class="bg-orb bg-orb-3"></div>
     </div>
     <div class="grid-overlay"></div>
-    <div class="particles" id="particles"></div>
     <div class="page">
         <nav>
             <div class="nav-inner">
-                <a href="/updates/" class="nav-brand">
-                    <img src="/updates/images/candy-bot-avatar.png" alt="Candy-Bot" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">
-                    <span>The Fallen Collective</span>
-                </a>
+                <a href="../index.html" class="nav-brand"><img src="../images/candy-bot-avatar.png" alt="Candy-Bot" style="width:32px;height:32px;border-radius:50%;object-fit:cover;"> <span>Candy-Bot Hub</span></a>
                 <div class="nav-links">
-                    <a href="/updates/">Candy-Bot</a>
-                    <a href="/updates/programs/" class="nav-cta">📦 Programs</a>
+                    <a href="index.html">All Programs</a>
+                    <a href="../index.html">Main Website</a>
                 </div>
             </div>
         </nav>
-        <div class="page-header">
-            <div class="container">
-                <div class="page-badge"><span class="dot"></span> All Programs</div>
-                <h1>Our <span class="gradient">Programs</span></h1>
-                <p>Apps and tools built by The Fallen Collective. Download for your platform below.</p>
-            </div>
+        
+<div class="hero">
+    <div class="container">
+        <h1>Software <span class="gradient">Catalog</span></h1>
+        <p>Discover and download our suite of advanced desktop applications, all built with .NET and integrated with AI.</p>
+        
+        <div class="grid">
+            <a href="candybot.html" class="card">
+                <img src="../images/candy-bot-avatar.png" alt="Icon">
+                <h3>Candy-Bot</h3>
+                <p>The ultimate AI desktop companion. Chat, roleplay, search files, write code, mix music, and generate images.</p>
+                <span class="btn-card">View App &rarr;</span>
+            </a>
+            <a href="widget.html" class="card">
+                <img src="../images/candy-bot-avatar.png" alt="Icon">
+                <h3>Candy-Bot Widget</h3>
+                <p>A compact, floating desktop widget that gives you instant access to Candy-Bot's intelligence without opening the full app.</p>
+                <span class="btn-card">View App &rarr;</span>
+            </a>
+            <a href="companion-bar.html" class="card">
+                <img src="../images/candy-bot-avatar.png" alt="Icon">
+                <h3>Desktop Companion Bar</h3>
+                <p>A sleek toolbar that sits on your desktop, providing quick access to tools, stats, and shortcuts.</p>
+                <span class="btn-card">View App &rarr;</span>
+            </a>
+            <a href="video-exporter.html" class="card">
+                <img src="../images/candy-bot-avatar.png" alt="Icon">
+                <h3>Video Exporter</h3>
+                <p>Advanced tool for exporting, processing, and handling video streams from Stripchat.</p>
+                <span class="btn-card">View App &rarr;</span>
+            </a>
         </div>
-        <section class="programs-section">
-            <div class="container">
-                <div class="programs-grid">
-                    <div class="program-card">
-                        <div class="program-meta">
-                            <div class="program-icon">
-                                <img src="/updates/programs/images/candy-bot-icon.png" alt="Candy-Bot Streamer">
-                            </div>
-                            <div class="program-info">
-                                <div class="platform-badge">🤖 Android</div>
-                                <h3>Candy-Bot Streamer</h3>
-                                <p>Stream directly from your Android phone to your RTMP server. One tap to go live — no accounts, no fuss.</p>
-                            </div>
-                        </div>
-                        <div class="program-stats">
-                            <div class="program-stat">
-                                <div class="program-stat-val">v1.0</div>
-                                <div class="program-stat-label">Version</div>
-                            </div>
-                            <div class="program-stat">
-                                <div class="program-stat-val">Android 5+</div>
-                                <div class="program-stat-label">Requires</div>
-                            </div>
-                            <div class="program-stat">
-                                <div class="program-stat-val">~7 MB</div>
-                                <div class="program-stat-label">Size</div>
-                            </div>
-                        </div>
-                        <a href="https://livecastly.fun/downloads/candy-bot-streamer.apk" class="btn-download">
-                            ⬇ Download APK
-                        </a>
-                    </div>
-                    <div class="program-card empty">
-                        <div class="empty-icon">➕</div>
-                        <p>More programs coming soon…</p>
-                    </div>
-                    <div class="program-card empty">
-                        <div class="empty-icon">➕</div>
-                        <p>More programs coming soon…</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    </div>
+</div>
+
         <footer>
             <div class="container">
-                <p style="margin-bottom:8px;">
-                    <a href="/updates/">Candy-Bot</a> &nbsp;·&nbsp;
-                    <a href="/updates/programs/">Programs</a> &nbsp;·&nbsp;
-                    <a href="https://github.com/GunnerySGTSnake">GitHub</a>
-                </p>
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>
             </div>
         </footer>
     </div>
-    <script>
-        const pc = document.getElementById('particles');
-        const colors = ['#c44dff','#ff6b9d','#6b5ce7','#4d9fff','#4ade80'];
-        for (let i = 0; i < 40; i++) {
-            const p = document.createElement('div');
-            p.className = 'particle';
-            const s = Math.random() * 4 + 1;
-            Object.assign(p.style, { width:s+'px', height:s+'px', left:Math.random()*100+'%', background:colors[Math.floor(Math.random()*colors.length)], animationDuration:(Math.random()*20+15)+'s', animationDelay:(Math.random()*15)+'s' });
-            pc.appendChild(p);
-        }
-        window.addEventListener('scroll', () => {
-            document.querySelector('nav').style.background = window.scrollY > 50 ? 'rgba(6,6,15,0.92)' : 'rgba(6,6,15,0.7)';
-        });
-    </script>
 </body>
 </html>

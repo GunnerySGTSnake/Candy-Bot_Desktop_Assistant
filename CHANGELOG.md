@@ -1,5 +1,16 @@
 # Candy-Bot Update Changelog
 
+## Version 6.0.7
+**Released:** 2026-05-21
+
+### New Features
+- Added "SOFTWARE" context menu to the right-click menu of the widget
+- Implemented persistent "+ ADD PROGRAM" custom program launcher to register and launch external executables (.exe)
+- Added capability to clear the registered custom programs list
+- Voice-assisted TTS confirmations when adding programs and executing launches
+
+---
+
 ## Version 6.0.5
 **Released:** 2026-05-19
 
