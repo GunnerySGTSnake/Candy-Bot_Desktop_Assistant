@@ -56,6 +56,60 @@
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
         .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
         
+        .readme-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto 80px;
+            max-width: 900px;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: left;
+        }
+        .readme-content h1, .readme-content h2, .readme-content h3 {
+            color: #fff;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .readme-content h1 { font-size: 2.2rem; margin-top: 0; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .readme-content h2 { font-size: 1.8rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .readme-content h3 { font-size: 1.4rem; }
+        .readme-content p { margin-bottom: 1.2em; color: var(--text-muted); font-size: 1.05rem; }
+        .readme-content ul, .readme-content ol { margin-bottom: 1.2em; padding-left: 25px; color: var(--text-muted); }
+        .readme-content li { margin-bottom: 0.4em; }
+        .readme-content a { color: var(--primary-light); text-decoration: none; }
+        .readme-content a:hover { text-decoration: underline; }
+        .readme-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--primary-light);
+        }
+        .readme-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border);
+        }
+        .readme-content pre code {
+            background: transparent; padding: 0; color: #e8e8f0;
+        }
+        .readme-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(196,77,255,0.05);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        
         footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
         footer p { font-size: 0.82rem; color: var(--text-muted); }
         footer a { color: var(--primary-light); text-decoration: none; }
@@ -90,6 +144,95 @@
     </div>
 </div>
 
+        <div class="container"><div class="readme-content"><h1>🎵 Candy-Bot: Desktop Companion &amp; AI Ecosystem</h1>
+<blockquote>
+<p><strong>"To Help Others Find Their Voices"</strong> - In Memory of DJCANDY (Candy)</p>
+</blockquote>
+<p>Candy-Bot is a comprehensive AI-powered ecosystem combining a feature-rich <strong>Windows Desktop Widget (WPF)</strong> with a robust <strong>Node.js backend API</strong>. It serves as an interactive, always-on-top animated desktop companion capable of advanced conversations, image/video/music generation, deep file organization, and intelligent web searching.</p>
+<hr />
+<h2>🌟 Key Features</h2>
+<h3>🖥️ Desktop Widget (Frontend)</h3>
+<ul>
+<li><strong>Always-On-Top Companion:</strong> An animated, bobbing avatar with glowing pink effects that lives persistently on your Windows desktop.</li>
+<li><strong>Voice Feedback &amp; TTS:</strong> Built-in Text-to-Speech (TTS) integration announcing actions, reading responses, and providing system notifications via animated speech bubbles.</li>
+<li><strong>Context Menu &amp; Quick Chat:</strong> Right-click for a full tool menu; left-click to open the instant text chat interface.</li>
+<li><strong>AI Integrations:</strong> Direct UI access to the Code Assistant, Image Generation, Document Generation, and Web Browsing capabilities.</li>
+<li><strong>Advanced File Management:</strong> Multi-Drive File Search, Enhanced File Search, and File Organizer built straight into the UI.</li>
+<li><strong>Auto-Positioning:</strong> Remembers your preferred screen position and intelligently adapts to multi-monitor setups.</li>
+</ul>
+<h3>⚙️ AI Backend API</h3>
+<ul>
+<li><strong>Advanced LLM Integration:</strong> Powered by the Anthropic Claude API for nuanced, character-driven interactions with conversational memory.</li>
+<li><strong>Multimedia Generation:</strong> Integrations with DALL-E/Stability AI/Replicate for images, ElevenLabs/Suno for voice and music, and Runway ML for video.</li>
+<li><strong>Persistent Memory:</strong> Uses Azure Cosmos DB for robust conversation history storage.</li>
+<li><strong>Web Intelligence:</strong> Integrated Brave Search and Serper API for real-time web awareness.</li>
+</ul>
+<h3>🔍 Network Utilities</h3>
+<ul>
+<li>A collection of Python scripts (<code>deep_trace_ip.py</code>, <code>generate_ip_report_pdf.py</code>, etc.) for network probing, deep IP tracing, and generating diagnostic PDF reports.</li>
+</ul>
+<hr />
+<h2>🛠️ Technology Stack</h2>
+<ul>
+<li><strong>Frontend (Desktop App):</strong> C#, WPF, .NET 8.0/9.0, Microsoft WebView2, System.Speech, Newtonsoft.Json.</li>
+<li><strong>Backend (API Server):</strong> Node.js, Express.js, Azure Cosmos SDK, Axios.</li>
+<li><strong>Scripting &amp; Utils:</strong> Python 3.x (Network analysis and reporting).</li>
+</ul>
+<hr />
+<h2>🚀 Getting Started</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><strong>Node.js 18+</strong> (for the backend server)</li>
+<li><strong>.NET 8.0+ SDK</strong> (for compiling and running the WPF Desktop Widget)</li>
+<li><strong>Python 3.x</strong> (optional, for specific networking scripts)</li>
+</ul>
+<h3>1. Setting up the Backend API</h3>
+<ol>
+<li>Open a terminal in the project root.</li>
+<li>Install Node dependencies:
+   <code>bash
+   npm install</code></li>
+<li>Copy <code>.env.example</code> to <code>.env</code> and fill in your necessary API keys (Anthropic, OpenAI, Cosmos DB, ElevenLabs, etc.).</li>
+<li>Start the backend server:
+   <code>bash
+   npm start</code>
+   <em>(The server will run on <code>localhost:3000</code> by default)</em></li>
+</ol>
+<h3>2. Launching the Desktop Widget</h3>
+<p>You can run the pre-configured scripts to easily start the widget from your terminal or file explorer:
+- Run <code>LAUNCH_WIDGET.bat</code> or <code>RUN_WIDGET.bat</code> / <code>RUN_WIDGET.ps1</code>.</p>
+<p><em>Alternatively, build and run via source:</em>
+1. Open the project in Visual Studio.
+2. Ensure the required NuGet packages are restored (<code>Microsoft.Web.WebView2</code>, <code>System.Speech</code>, <code>Newtonsoft.Json</code>, etc.).
+3. Build and Run the project. The floating Candy-Bot widget will appear on your screen.</p>
+<hr />
+<h2>📁 Repository Structure</h2>
+<ul>
+<li><code>/CandyBotApp</code> - The core C# WPF application and widget logic (including settings, logs, and generator windows).</li>
+<li><code>/src</code> - Node.js Express backend controllers, routes, and AI logic services.</li>
+<li><code>/Controls</code> &amp; <code>/Converters</code> - Custom WPF UI elements and data converters.</li>
+<li><code>/Images</code> &amp; <code>/Models</code> - UI assets (like the Candy-Bot avatar) and data transfer models.</li>
+<li><code>/*.xaml</code> &amp; <code>/*.cs</code> - Various feature windows for chat, file search, personalities, and settings.</li>
+<li><code>/*.py</code> - Python utility scripts for device probing and IP tracing.</li>
+<li><code>/publish*</code> - Compiled release builds and installer files.</li>
+</ul>
+<hr />
+<h2>🎨 Customization &amp; Settings</h2>
+<p>The widget is highly customizable through its built-in Settings window (accessible via right-click):
+- <strong>Voice:</strong> Toggle Text-to-Speech on/off and adjust the speech rate.
+- <strong>Personalities:</strong> Switch the AI's persona (e.g., Helpful, Funny, Professional).
+- <strong>Appearance:</strong> Adjust themes, including the signature Pink glow versus standard UI borders.
+- <strong>Positioning:</strong> Snap to 9 different predefined screen sectors.</p>
+<hr />
+<h2>🤝 Contributing</h2>
+<p>This is a memorial project for DJCANDY. Contributions that honor her mission and improve the Candy-Bot ecosystem are warmly welcomed.</p>
+<h2>📜 License</h2>
+<p>MIT License - Built with love for the DJ community.</p>
+<h2>💖 In Memory</h2>
+<p>This project is dedicated to DJCANDY (Candy) and her mission:
+<strong>"To Help Others Find Their Voices"</strong></p>
+<hr />
+<p><strong>Built by GOD for the Fallen Collective</strong> 🎵</p></div></div>
         <footer>
             <div class="container">
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>

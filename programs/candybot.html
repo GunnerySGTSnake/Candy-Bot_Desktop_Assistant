@@ -56,6 +56,60 @@
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
         .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
         
+        .readme-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto 80px;
+            max-width: 900px;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: left;
+        }
+        .readme-content h1, .readme-content h2, .readme-content h3 {
+            color: #fff;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .readme-content h1 { font-size: 2.2rem; margin-top: 0; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .readme-content h2 { font-size: 1.8rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .readme-content h3 { font-size: 1.4rem; }
+        .readme-content p { margin-bottom: 1.2em; color: var(--text-muted); font-size: 1.05rem; }
+        .readme-content ul, .readme-content ol { margin-bottom: 1.2em; padding-left: 25px; color: var(--text-muted); }
+        .readme-content li { margin-bottom: 0.4em; }
+        .readme-content a { color: var(--primary-light); text-decoration: none; }
+        .readme-content a:hover { text-decoration: underline; }
+        .readme-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--primary-light);
+        }
+        .readme-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border);
+        }
+        .readme-content pre code {
+            background: transparent; padding: 0; color: #e8e8f0;
+        }
+        .readme-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(196,77,255,0.05);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        
         footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
         footer p { font-size: 0.82rem; color: var(--text-muted); }
         footer a { color: var(--primary-light); text-decoration: none; }
@@ -90,6 +144,56 @@
     </div>
 </div>
 
+        <div class="container"><div class="readme-content"><h1>Candy-Bot Desktop App</h1>
+<p>A versatile, feature-rich desktop assistant application built in C# WPF (.NET 9). Candy-Bot acts as an all-in-one desktop companion offering an interactive animated desktop widget with voice support, unrestrictive AI chat and roleplay capabilities, image and document generation, DJ booking and Camelot wheel tools, as well as robust PC automation like multi-drive file search and Twilio/Phone Link SMS integration.</p>
+<h2>🚀 Core Technologies</h2>
+<ul>
+<li><strong>C# / .NET 9</strong>: Application framework (Target: <code>net9.0-windows10.0.19041.0</code>)</li>
+<li><strong>WPF (Windows Presentation Foundation)</strong>: UI framework with custom UI elements, live theming, and animations.</li>
+<li><strong>Venice AI API</strong>: Backend engine for unrestricted text generation, extensive roleplay chat, and image generation.</li>
+<li><strong>ElevenLabs API</strong>: Text-to-Speech (TTS) for lifelike character voice generation.</li>
+<li><strong>Twilio API &amp; Windows Phone Link</strong>: For automated SMS sending/receiving and incoming call notifications natively on Windows.</li>
+<li><strong>Gradio / Hugging Face Spaces</strong>: Additional image generation support via Gradio services.</li>
+<li><strong>Microsoft WebView2</strong>: Embedded modern web browser.</li>
+<li><strong>Newtonsoft.Json</strong>: Data management, settings, and local profiles.</li>
+</ul>
+<h2>✨ Key Features</h2>
+<ul>
+<li><strong>Floating Desktop Widget</strong>: An animated, always-on-top companion widget providing quick access to all tools. Features include voice feedback, theme-awareness, and a "Privacy Mode" triggered via global hotkeys (Scroll Lock).</li>
+<li><strong>AI Chat &amp; Unrestricted Roleplay Engine</strong>: Deep roleplay mode with multi-character support. Features highly customizable character profiles (name, age, sex, appearance, personality, relationship, kink tags), adjustable intensity sliders, and save/load chat histories.</li>
+<li><strong>AI Generators</strong>: </li>
+<li><strong>Image Generation</strong>: Prompt-to-image integration natively in the app.</li>
+<li><strong>Document &amp; Code Generation</strong>: Specialized assistants for writing documents and generating code.</li>
+<li><strong>DJ Engine / Camelot Tool</strong>: Specialized tools for DJ track management, harmonic mixing (Camelot wheel), and gig planning.</li>
+<li><strong>Multi-Drive File Search</strong>: A fast search utility across the user's PC.</li>
+<li><strong>SMS &amp; Phone Integration</strong>: Read and reply to text messages via Twilio API or automated Windows Phone Link UI automation.</li>
+<li><strong>Persona Library</strong>: Save and load AI character personas, family tree configurations, and user profiles to quickly resume roleplay sessions.</li>
+</ul>
+<h2>🛠️ Setup &amp; Installation</h2>
+<ol>
+<li><strong>Prerequisites</strong>: </li>
+<li>Windows 10/11</li>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/9.0">.NET 9.0 Desktop Runtime</a></li>
+<li>Visual Studio 2022 (if building from source)</li>
+<li><strong>Clone the Repository</strong>: Download or clone the project folder.</li>
+<li><strong>Open Project</strong>: Open <code>CandyBotApp.csproj</code> in Visual Studio.</li>
+<li><strong>Restore Dependencies</strong>: NuGet will automatically restore necessary packages:</li>
+<li><code>Autoupdater.NET.Official</code></li>
+<li><code>Microsoft.Web.WebView2</code></li>
+<li><code>Newtonsoft.Json</code></li>
+<li><code>System.Speech</code></li>
+<li><strong>Build &amp; Run</strong>: Press <code>F5</code> to build and launch the application.</li>
+<li><strong>Configuration</strong>: Upon first launch, right-click the widget to access <strong>Settings</strong>. Enter your required API keys (Venice AI, ElevenLabs, Twilio) for full functionality.</li>
+</ol>
+<h2>📁 Project Structure highlights</h2>
+<ul>
+<li><code>/Services/</code>: API service connectors (<code>VeniceAIService.cs</code>, <code>ElevenLabsVoiceService.cs</code>, <code>CandyBotSmsService.cs</code>, <code>CandyBotMcpBridge.cs</code>, etc.)</li>
+<li><code>/Models/</code>: Data structures and state definitions.</li>
+<li><code>/PythonScripts/</code>: Additional scripts that the backend may invoke.</li>
+<li><code>CandyBotDesktopWidget.xaml/cs</code>: The main entry point floating widget.</li>
+<li><code>CandyBotRolePlayWindow.cs</code>: Unrestricted Roleplay UI handling.</li>
+<li><code>CandyBotDJWindow.cs</code> &amp; <code>CamelotEngine.cs</code>: DJ Engine functionality.</li>
+</ul></div></div>
         <footer>
             <div class="container">
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>

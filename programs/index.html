@@ -56,6 +56,60 @@
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
         .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
         
+        .readme-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto 80px;
+            max-width: 900px;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: left;
+        }
+        .readme-content h1, .readme-content h2, .readme-content h3 {
+            color: #fff;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .readme-content h1 { font-size: 2.2rem; margin-top: 0; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .readme-content h2 { font-size: 1.8rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .readme-content h3 { font-size: 1.4rem; }
+        .readme-content p { margin-bottom: 1.2em; color: var(--text-muted); font-size: 1.05rem; }
+        .readme-content ul, .readme-content ol { margin-bottom: 1.2em; padding-left: 25px; color: var(--text-muted); }
+        .readme-content li { margin-bottom: 0.4em; }
+        .readme-content a { color: var(--primary-light); text-decoration: none; }
+        .readme-content a:hover { text-decoration: underline; }
+        .readme-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--primary-light);
+        }
+        .readme-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border);
+        }
+        .readme-content pre code {
+            background: transparent; padding: 0; color: #e8e8f0;
+        }
+        .readme-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(196,77,255,0.05);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        
         footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
         footer p { font-size: 0.82rem; color: var(--text-muted); }
         footer a { color: var(--primary-light); text-decoration: none; }
@@ -113,6 +167,7 @@
     </div>
 </div>
 
+        
         <footer>
             <div class="container">
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>

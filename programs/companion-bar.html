@@ -56,6 +56,60 @@
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
         .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
         
+        .readme-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto 80px;
+            max-width: 900px;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: left;
+        }
+        .readme-content h1, .readme-content h2, .readme-content h3 {
+            color: #fff;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .readme-content h1 { font-size: 2.2rem; margin-top: 0; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .readme-content h2 { font-size: 1.8rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .readme-content h3 { font-size: 1.4rem; }
+        .readme-content p { margin-bottom: 1.2em; color: var(--text-muted); font-size: 1.05rem; }
+        .readme-content ul, .readme-content ol { margin-bottom: 1.2em; padding-left: 25px; color: var(--text-muted); }
+        .readme-content li { margin-bottom: 0.4em; }
+        .readme-content a { color: var(--primary-light); text-decoration: none; }
+        .readme-content a:hover { text-decoration: underline; }
+        .readme-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--primary-light);
+        }
+        .readme-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border);
+        }
+        .readme-content pre code {
+            background: transparent; padding: 0; color: #e8e8f0;
+        }
+        .readme-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(196,77,255,0.05);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        
         footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
         footer p { font-size: 0.82rem; color: var(--text-muted); }
         footer a { color: var(--primary-light); text-decoration: none; }
@@ -90,6 +144,65 @@
     </div>
 </div>
 
+        <div class="container"><div class="readme-content"><h1>Desktop Companion Bar</h1>
+<h2>Overview</h2>
+<p>Desktop Companion Bar is a lightweight, customizable, always-on-top toolbar for Windows. Designed to enhance productivity, it provides a persistent interface for quick application launching, hotkey management, and macro execution. The application stays pinned near the taskbar (or a custom location) and ensures you have direct access to your most important tools without switching context.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Always-On-Top Interface</strong>: Ensures your companion bar is always accessible and visible above other applications.</li>
+<li><strong>Quick Launch</strong>: Add and manage custom entries to quickly launch your favorite applications or tools.</li>
+<li><strong>Hotkey Management</strong>: Manage hotkey slots and lock them to prevent accidental triggers. </li>
+<li><strong>Macro Recorder</strong>: Record mouse movements, keyboard inputs, and window actions to create reproducible macros with custom playback speed and looping.</li>
+<li><strong>Advanced Customization</strong>: Select from built-in themes (Purple, Blue, Green, Red, Dark) or define custom background gradients, glow colors, and border colors.</li>
+<li><strong>Smart Placement</strong>: Automatically snaps relative to your Windows taskbar location, with integrated arrow indicators and placement guides for seamless repositioning.</li>
+<li><strong>Global Hotkeys</strong>: Use global keyboard shortcuts to show/hide the bar or trigger an emergency lock.</li>
+</ul>
+<h2>Technologies Used</h2>
+<ul>
+<li><strong>C# / .NET 8.0</strong>: Core backend logic and runtime.</li>
+<li><strong>WPF (Windows Presentation Foundation)</strong>: Modern, hardware-accelerated UI rendering.</li>
+<li><strong>MVVM Architecture</strong>: Follows Model-View-ViewModel principles for clean separation of concerns.</li>
+<li><strong>Windows APIs / Interop</strong>: Utilized for precise taskbar detection, window positioning, and forced top-most behavior.</li>
+</ul>
+<h2>Project Structure</h2>
+<pre><code>CompanionBar/
+├── Infrastructure/   # Reusable UI primitives (RelayCommand, Converters)
+├── Interop/          # Native Windows API integrations (Taskbar info, Window placement)
+├── Models/           # Data models (QuickLaunchEntry, HotkeySlot, SavedMacro)
+├── Services/         # Background services (ProcessLauncher)
+├── ViewModels/       # UI logic and state management (SettingsViewModel)
+├── Views/            # XAML definitions for windows and controls
+│   ├── MainWindow.xaml       # Main companion bar interface
+│   ├── SettingsWindow.xaml   # Configuration and macro management
+│   ├── ArrowIndicator.xaml   # Visual aides for placement
+│   └── PlacementGuide.xaml   # Guide overlay for moving the bar
+└── App.xaml          # Application entry point and resource dictionaries
+</code></pre>
+<h2>Setup &amp; Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li>Windows OS (Windows 10 or later recommended).</li>
+<li><a href="https://dotnet.microsoft.com/en-us/download/dotnet/8.0">.NET 8.0 Desktop Runtime</a> or later.</li>
+<li>Visual Studio 2022 (if building from source).</li>
+</ul>
+<h3>Building from Source</h3>
+<ol>
+<li>Clone or download the repository.</li>
+<li>Open the solution file <code>CompanionBar.sln</code> (or <code>CompanionBar.csproj</code>) in Visual Studio 2022.</li>
+<li>Ensure the target framework is set to <code>.NET 8.0</code>.</li>
+<li>Restore NuGet packages if necessary.</li>
+<li>Build the solution (<code>Ctrl + Shift + B</code>).</li>
+<li>Run the project (<code>F5</code> or <code>Ctrl + F5</code>).</li>
+</ol>
+<h3>Usage</h3>
+<ol>
+<li><strong>Launch</strong>: Start the application. The bar will appear and snap to the nearest edge of your screen relative to the taskbar.</li>
+<li><strong>Move</strong>: Click and drag any empty space on the bar to reposition it. Visual guides will aid you in placement.</li>
+<li><strong>Menu</strong>: Click the "Menu" button to open the settings window. Here, you can configure colors, themes, macros, and global hotkey bindings.</li>
+<li><strong>Macros</strong>: Use the Macro tab in the settings menu to start/stop recording your keystrokes and mouse actions.</li>
+</ol>
+<h2>License</h2>
+<p>This project is intended for personal productivity enhancement. Consult the repository owner for specific usage and distribution rights.</p></div></div>
         <footer>
             <div class="container">
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>

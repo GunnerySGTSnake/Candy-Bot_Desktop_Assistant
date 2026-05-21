@@ -56,6 +56,60 @@
         .card p { font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
         .card .btn-card { display: inline-block; font-size: 0.85rem; font-weight: 600; color: var(--primary-light); background: rgba(196,77,255,0.1); padding: 6px 14px; border-radius: 100px; }
         
+        .readme-content {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px auto 80px;
+            max-width: 900px;
+            line-height: 1.8;
+            color: var(--text);
+            text-align: left;
+        }
+        .readme-content h1, .readme-content h2, .readme-content h3 {
+            color: #fff;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+        .readme-content h1 { font-size: 2.2rem; margin-top: 0; padding-bottom: 15px; border-bottom: 1px solid var(--border); }
+        .readme-content h2 { font-size: 1.8rem; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+        .readme-content h3 { font-size: 1.4rem; }
+        .readme-content p { margin-bottom: 1.2em; color: var(--text-muted); font-size: 1.05rem; }
+        .readme-content ul, .readme-content ol { margin-bottom: 1.2em; padding-left: 25px; color: var(--text-muted); }
+        .readme-content li { margin-bottom: 0.4em; }
+        .readme-content a { color: var(--primary-light); text-decoration: none; }
+        .readme-content a:hover { text-decoration: underline; }
+        .readme-content code {
+            background: rgba(0,0,0,0.3);
+            padding: 2px 6px;
+            border-radius: 6px;
+            font-family: monospace;
+            font-size: 0.9em;
+            color: var(--primary-light);
+        }
+        .readme-content pre {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin-bottom: 1.2em;
+            border: 1px solid var(--border);
+        }
+        .readme-content pre code {
+            background: transparent; padding: 0; color: #e8e8f0;
+        }
+        .readme-content blockquote {
+            border-left: 4px solid var(--primary);
+            padding-left: 15px;
+            margin: 1.5em 0;
+            color: var(--text-muted);
+            font-style: italic;
+            background: rgba(196,77,255,0.05);
+            padding: 15px;
+            border-radius: 0 12px 12px 0;
+        }
+        
         footer { padding: 40px 0; border-top: 1px solid var(--border); text-align: center; margin-top: auto; }
         footer p { font-size: 0.82rem; color: var(--text-muted); }
         footer a { color: var(--primary-light); text-decoration: none; }
@@ -90,6 +144,55 @@
     </div>
 </div>
 
+        <div class="container"><div class="readme-content"><h1>Stripchat Exporter</h1>
+<p>A comprehensive Windows desktop application for extracting and downloading video clips and trailers from Stripchat. Built with C#, .NET 8, and WPF, this tool streamlines the process of fetching authenticated content, automatically parsing JSON archives, and safely downloading streams via direct HTTP or FFmpeg remuxing.</p>
+<h2>Features</h2>
+<ul>
+<li><strong>Smart Video Downloading</strong>: Supports both standard direct MP4 downloads via HTTP and seamless remuxing of HLS streams (<code>.m3u8</code> / <code>.ts</code>) into <code>.mp4</code> using bundled FFmpeg, preserving raw stream quality without re-encoding.</li>
+<li><strong>Browser Cookie Authentication</strong>: Optionally decrypts local session cookies from Chrome, Edge, Brave, or Vivaldi (bypassing DPAPI/AES-256-GCM encryption on Windows) to automatically fetch authenticated APIs and content without requiring manual login.</li>
+<li><strong>JSON Parsing</strong>: Allows manually pasting raw JSON payloads to easily discover and extract hundreds of clips and trailers.</li>
+<li><strong>Local Download History Tracking</strong>: Uses a local SQLite database to record successfully downloaded videos and trailers. This allows the UI to automatically flag duplicate files and prevent redownloading items from your history.</li>
+<li><strong>Queue Resuming</strong>: Automatically saves your pending download queue when the app is closed. On the next start, it will prompt to resume any interrupted downloads.</li>
+<li><strong>Built-in Mp4 Inspector</strong>: Reads MP4 headers (<code>moov</code>/<code>mvhd</code> atoms) efficiently to determine local file durations without loading the entire media file.</li>
+<li><strong>Automatic Updates</strong>: Includes an update service that checks for the latest app versions on launch.</li>
+</ul>
+<h2>Technologies Used</h2>
+<ul>
+<li><strong>Language:</strong> C# 12</li>
+<li><strong>Framework:</strong> .NET 8.0 (Windows Desktop)</li>
+<li><strong>UI:</strong> Windows Presentation Foundation (WPF)</li>
+<li><strong>Database:</strong> SQLite (<code>Microsoft.Data.Sqlite</code>)</li>
+<li><strong>JSON Processing:</strong> <code>Newtonsoft.Json</code></li>
+<li><strong>Video Processing:</strong> FFmpeg</li>
+<li><strong>Installer:</strong> Inno Setup Compiler</li>
+</ul>
+<h2>Setup and Installation</h2>
+<h3>Prerequisites</h3>
+<ul>
+<li><a href="https://dotnet.microsoft.com/download/dotnet/8.0"><strong>.NET 8.0 Desktop Runtime</strong></a></li>
+<li><strong>Visual Studio 2022</strong> (or the .NET CLI <code>dotnet build</code>)</li>
+<li><strong>FFmpeg</strong>: The application expects <code>ffmpeg.exe</code> to be present next to the built executable.</li>
+<li><strong>Inno Setup</strong> (Optional): If you want to build the <code>.exe</code> installer.</li>
+</ul>
+<h3>Building from Source</h3>
+<ol>
+<li>Clone or download the repository.</li>
+<li>Navigate to the <code>StripchatExporter</code> project directory.</li>
+<li>Build the project using the .NET CLI:
+   <code>cmd
+   cd StripchatExporter
+   dotnet build -c Release</code>
+   <em>Alternatively, open the folder in Visual Studio 2022 and build from the IDE.</em></li>
+<li>Download the latest FFmpeg binaries for Windows and place <code>ffmpeg.exe</code> inside the output directory (e.g., <code>StripchatExporter/bin/Release/net8.0-windows/</code>).</li>
+</ol>
+<h3>Creating the Installer</h3>
+<p>To bundle the application into a standalone Windows installer:
+1. Ensure the app is compiled in Release mode and the executable is placed in the <code>Release/</code> directory at the project root.
+2. Ensure <code>ffmpeg.exe</code> and <code>ffprobe.exe</code> are located at <code>C:\ffmpeg</code> (or update the <code>#define FfmpegDir</code> path in <code>installer.iss</code>).
+3. Open <code>installer.iss</code> using Inno Setup Compiler.
+4. Compile the script. The generated setup file will be placed in the <code>Installer/</code> directory.</p>
+<h2>License</h2>
+<p><em>(Add License Information Here)</em></p></div></div>
         <footer>
             <div class="container">
                 <p>© 2026 <a href="https://thefallencollective.online">The Fallen Collective</a>. All rights reserved.</p>
